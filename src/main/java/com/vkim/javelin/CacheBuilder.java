@@ -1,11 +1,9 @@
 package com.vkim.javelin;
 
-import com.vkim.javelin.JavelinCache.ReferencePower;
-
 public class CacheBuilder {
 
-	static final long UNSET_LONG = -1;
-	static final int UNSET_INT = -1;
+	private static final long UNSET_LONG = -1;
+	private static final int UNSET_INT = -1;
 	private static final int MAXIMUM_CAPACITY = 1 << 30;
 
 	private static final int DEFAULT_INITIAL_CAPACITY = 16;
@@ -16,7 +14,6 @@ public class CacheBuilder {
 	private int concurrencyLevel = UNSET_INT;
 	private long expireAfterAccess = UNSET_LONG;
 	private long expireAfterWrite = UNSET_LONG;
-	private ReferencePower keyPower = ReferencePower.WEAK;
 
 	public CacheBuilder initialCapacity(int initialCapacity) {
 		if (initialCapacity < 0) {
@@ -41,18 +38,6 @@ public class CacheBuilder {
 
 	public int getConcurrencyLevel() {
 		return concurrencyLevel == UNSET_INT ? DEFAULT_CONCURRENCY_LEVEL : concurrencyLevel;
-	}
-
-	public CacheBuilder setKeyPower(ReferencePower keyPower) {
-		if (keyPower == null) {
-			throw new NullPointerException();
-		}
-		this.keyPower = keyPower;
-		return this;
-	}
-
-	public ReferencePower getKeyPower() {
-		return keyPower;
 	}
 
 	public CacheBuilder setExpireAfterAccess(long expireAfterAccess) {

@@ -49,5 +49,4 @@ public class StripedLocks {
 		int index = reHash(hash) & locks.length - 1;
 		return locks[index];
 	}
-
 }
